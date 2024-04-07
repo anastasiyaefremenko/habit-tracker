@@ -5,6 +5,7 @@ export const StyledContextualMenuContainer = styled.div`
   background-color: #f9f9f9;
   position: absolute;
   bottom: 30px;
+  right: 20px;
 
   display: flex;
   flex-direction: column;

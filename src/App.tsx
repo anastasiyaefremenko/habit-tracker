@@ -19,7 +19,7 @@ const App = () => {
   const [currentHabit, setCurrentHabit] = useState(undefined);
 
   const [folders, setFolders] = useState<Folders>([
-    { id: "", folderName: "Habits", habits: [], rename: false },
+    { id: "", folderName: "Habits", habits: [] },
   ]);
   // const [folders, setFolders] = useState<Folders>([
   // ]);

@@ -1,33 +1,18 @@
-import React, { useState } from "react";
+import React from "react";
 import {
   StyledPlusButton,
   StyledPlusButtonContainer,
 } from "./styles/PlusButton.styled";
-import { ContextualMenu } from "./ContextualMenu";
-import { ContextualMenuContextType } from "../types";
 
-export const ContextualMenuContext =
-  React.createContext<ContextualMenuContextType>({
-    isContextualMenuVisible: false,
-    setIsContextualMenuVisible: () => {},
-  });
+type PlusButtonProps = {
+  onPlusButtonClick: () => void;
+};
 
-const PlusButton = (props: any) => {
-  const [isContextualMenuVisible, setIsContextualMenuVisible] = useState(false);
-
-  const openContextualMenu = (props: any) => {
-    setIsContextualMenuVisible(true);
-  };
+const PlusButton = (props: PlusButtonProps) => {
   return (
-    <ContextualMenuContext.Provider
-      value={{ isContextualMenuVisible, setIsContextualMenuVisible }}
-    >
-      <StyledPlusButtonContainer>
-        {isContextualMenuVisible && <ContextualMenu />}
-
-        <StyledPlusButton onClick={openContextualMenu}></StyledPlusButton>
-      </StyledPlusButtonContainer>
-    </ContextualMenuContext.Provider>
+    <StyledPlusButtonContainer>
+      <StyledPlusButton onClick={props.onPlusButtonClick}></StyledPlusButton>
+    </StyledPlusButtonContainer>
   );
 };
 

@@ -7,7 +7,6 @@ export type Folder = {
   id: string;
   folderName: string;
   habits: Habit[];
-  rename: boolean;
 };
 
 export type Folders = Folder[];
