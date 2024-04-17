@@ -1,6 +1,7 @@
 import styled from "styled-components";
 import { themeColorSecondary } from "../../styles/themeColors";
 import { GoPlus } from "react-icons/go";
+import { BsFolderPlus } from "react-icons/bs";
 
 export const StyledPlusButtonContainer = styled.div`
   display: flex;
@@ -11,10 +12,16 @@ export const StyledPlusButtonContainer = styled.div`
   position: absolute;
   bottom: 0;
   width: 100%;
-  height: 80px;
+  height: 84px;
 `;
 
-export const StyledPlusButton = styled(GoPlus)<{ color?: string }>`
+export const StyledPlusButton = styled.button`
+  background-color: transparent;
+  border: none;
+  padding-bottom: 30px;
+`;
+
+export const StyledPlusIcon = styled(BsFolderPlus)<{ color?: string }>`
   color: ${(props) => (props.color ? props.color : themeColorSecondary)};
   height: 30px;
   width: 30px;

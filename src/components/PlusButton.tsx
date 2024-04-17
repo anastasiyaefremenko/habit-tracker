@@ -1,17 +1,21 @@
 import React from "react";
 import {
   StyledPlusButton,
+  StyledPlusIcon,
   StyledPlusButtonContainer,
 } from "./styles/PlusButton.styled";
 
 type PlusButtonProps = {
-  onPlusButtonClick: () => void;
+  disabled: boolean;
+  onNewFolder: () => void;
 };
 
 const PlusButton = (props: PlusButtonProps) => {
   return (
     <StyledPlusButtonContainer>
-      <StyledPlusButton onClick={props.onPlusButtonClick}></StyledPlusButton>
+      <StyledPlusButton disabled={props.disabled} onClick={props.onNewFolder}>
+        <StyledPlusIcon />
+      </StyledPlusButton>
     </StyledPlusButtonContainer>
   );
 };

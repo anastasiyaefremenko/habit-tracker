@@ -1,32 +1,21 @@
 import React, { useContext, useState } from "react";
-import styled from "styled-components";
 import Header from "../components/Header";
 import FolderItem from "../components/FolderItem";
+import { ConfirmDeleting } from "../components/ConfirmDeleting";
 import { Folder, Folders } from "../types";
 import PlusButton from "../components/PlusButton";
 import { FoldersContext } from "../App";
 import { v4 as uuid } from "uuid";
-import { ContextualMenu } from "../components/ContextualMenu";
-
-const Root = styled.div`
-  height: 100%;
-`;
-
-const FolderListContainer = styled.div`
-  min-height: 60vh;
-`;
+import { FolderListContainer, Root } from "../styles/FolderListPage.styled";
 
 const FolderListPage = () => {
   const { folders, changeFolders } = useContext(FoldersContext);
-  const [isContextualMenuVisible, setIsContextualMenuVisible] = useState(false);
 
-  const openContextualMenu = () => {
-    setIsContextualMenuVisible(true);
-  };
+  const [isPlusButtonDisabled, setIsPlusButtonDisabled] = useState(false);
+  const [isEditButtonDisabled, setIsEditButtonDisabled] = useState(false);
+  const [areThreeDotsVisible, setAreThreeDotsVisible] = useState(false);
 
-  const closeContextualMenu = () => {
-    setIsContextualMenuVisible(false);
-  };
+  const [folderIdToDelete, setFolderIdToDelete] = useState<string>();
 
   const addNewFolder = () => {
     const id = uuid();
@@ -36,7 +25,9 @@ const FolderListPage = () => {
       habits: [],
     };
     changeFolders([...folders, newFolder]);
-    closeContextualMenu();
+    setIsPlusButtonDisabled(true);
+    setAreThreeDotsVisible(false);
+    setIsEditButtonDisabled(true);
   };
 
   const updateFolder = (updatedFolder: Folder) => {
@@ -49,11 +40,36 @@ const FolderListPage = () => {
     foldersCopy.splice(updatedFolderIndex, 1, updatedFolder);
 
     changeFolders(foldersCopy);
+    setIsPlusButtonDisabled(false);
+    setIsEditButtonDisabled(false);
+  };
+
+  const showThreeDotsButoon = () => {
+    setAreThreeDotsVisible(true);
+    setIsEditButtonDisabled(true);
+  };
+  const hideThreeDotsButoon = () => {
+    setAreThreeDotsVisible(false);
+  };
+  const deleteFolder = () => {
+    const foldersCopy = folders.filter(
+      (folder) => folder.id !== folderIdToDelete
+    );
+    setFolderIdToDelete(undefined);
+    changeFolders(foldersCopy);
+  };
+  const handleShowConfirmation = (folderId: string) => {
+    setFolderIdToDelete(folderId);
   };
 
   return (
     <Root>
-      <Header back={false} title={"Folders"}></Header>
+      <Header
+        back={false}
+        title={"Folders"}
+        onEdit={showThreeDotsButoon}
+        editButtonDisabled={isEditButtonDisabled}
+      ></Header>
 
       <FolderListContainer>
         {folders.map((folder: Folder) => (
@@ -62,11 +78,17 @@ const FolderListPage = () => {
             folder={folder}
             startRenaming={folder.folderName === ""}
             onConfirm={updateFolder}
+            showThreeDots={areThreeDotsVisible}
+            hideThreeDots={hideThreeDotsButoon}
+            delete={deleteFolder}
+            showConfirmation={handleShowConfirmation}
           ></FolderItem>
         ))}
       </FolderListContainer>
-      {isContextualMenuVisible && <ContextualMenu onNewFolder={addNewFolder} />}
-      <PlusButton onPlusButtonClick={openContextualMenu} />
+      <PlusButton disabled={isPlusButtonDisabled} onNewFolder={addNewFolder} />
+      {folderIdToDelete !== undefined && (
+        <ConfirmDeleting delete={deleteFolder}></ConfirmDeleting>
+      )}
     </Root>
   );
 };

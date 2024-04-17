@@ -12,15 +12,22 @@ import {
 type HeaderPropsType = {
   back: boolean;
   title: String | undefined;
+  onEdit: () => void;
+  editButtonDisabled: boolean;
 };
 
-const Header = ({ back, title }: HeaderPropsType) => {
+const Header = ({
+  back,
+  title,
+  onEdit,
+  editButtonDisabled,
+}: HeaderPropsType) => {
   return (
     <Root>
       <HeaderContainer>
         <LeftContainer>{back && <BackButton />}</LeftContainer>
         <RightContainer>
-          <EditButton />
+          <EditButton onEdit={onEdit} editButtonDisabled={editButtonDisabled} />
         </RightContainer>
       </HeaderContainer>
       {title && <Title title={title} />}
