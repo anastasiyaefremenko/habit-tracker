@@ -18,7 +18,9 @@ export const useFolderContextV2 = () => {
   };
 
   useEffect(() => {
-    saveFoldersToLocalStorage(folders);
+    saveFoldersToLocalStorage(
+      folders.filter((folder) => folder.folderName !== "")
+    );
   }, [folders]);
 
   return React.createContext<FoldersContextType>({
