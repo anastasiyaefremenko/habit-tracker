@@ -3,12 +3,14 @@ import {
   Root,
   TranparentBackground,
   StyledContextualMenuContainer,
-  StyledButton,
+  StyledDeleteButton,
   ConfirmationNote,
+  StyledCancelButton,
 } from "./styles/ConfirmDeleting.styled";
 
 type ConfirmDeletingPropsType = {
   delete: () => void;
+  cancel: () => void;
 };
 
 export const ConfirmDeleting = (props: ConfirmDeletingPropsType) => {
@@ -17,8 +19,11 @@ export const ConfirmDeleting = (props: ConfirmDeletingPropsType) => {
       <TranparentBackground />
       <StyledContextualMenuContainer>
         <ConfirmationNote>All habits will be deleted.</ConfirmationNote>
-        <StyledButton onClick={props.delete}>Delete Folder</StyledButton>
+        <StyledDeleteButton onClick={props.delete}>
+          Delete Folder
+        </StyledDeleteButton>
       </StyledContextualMenuContainer>
+      <StyledCancelButton onClick={props.cancel}>Cancel</StyledCancelButton>
     </Root>
   );
 };

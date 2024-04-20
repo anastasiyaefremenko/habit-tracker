@@ -1,12 +1,31 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import "./App.css";
 import FolderListPage from "./views/FolderListPage";
 import { Folders, FoldersContextType } from "./types";
 
-export const FoldersContext = React.createContext<FoldersContextType>({
-  folders: [],
-  changeFolders: () => {},
-});
+export const useFolderContextV2 = () => {
+  const foldersStringFromStorage = localStorage.getItem("folders");
+
+  const data =
+    foldersStringFromStorage !== null
+      ? JSON.parse(foldersStringFromStorage)
+      : [];
+
+  const [folders, changeFolders] = useState<Folders>(data);
+
+  const saveFoldersToLocalStorage = (foldersToSave: Folders) => {
+    window.localStorage.setItem("folders", JSON.stringify(foldersToSave));
+  };
+
+  useEffect(() => {
+    saveFoldersToLocalStorage(folders);
+  }, [folders]);
+
+  return React.createContext<FoldersContextType>({
+    folders: folders,
+    changeFolders: changeFolders,
+  });
+};
 
 const App = () => {
   const [views, setViews] = useState({
@@ -15,28 +34,13 @@ const App = () => {
     showCreateHabitPage: false,
     showMarkHabitPage: false,
   });
-  const [currentFolder, setCurrentFolder] = useState(undefined);
-  const [currentHabit, setCurrentHabit] = useState(undefined);
 
-  const [folders, setFolders] = useState<Folders>([
-    { id: "", folderName: "Habits", habits: [] },
-  ]);
-  // const [folders, setFolders] = useState<Folders>([
-  // ]);
+  const ContextV2 = useFolderContextV2();
 
-  // const folders = [
-  //   { id: "id", folderName: "Habits", habits: [] },
-  //   { id: "id1", folderName: "Body", habits: [] },
-  // ];
-  // const [habits, setHabit] = useState([
-  //   { habitName: "", markedDays: [], habitColour: "#BCD1F0" },
-  // ]);
   return (
-    <FoldersContext.Provider
-      value={{ folders: folders, changeFolders: setFolders }}
-    >
+    <ContextV2.Provider value={{ folders: [], changeFolders: () => {} }}>
       <div>{views.showFoldersListPage && <FolderListPage />}</div>
-    </FoldersContext.Provider>
+    </ContextV2.Provider>
   );
 };
 

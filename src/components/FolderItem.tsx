@@ -48,9 +48,11 @@ const FolderItem = (props: FolderItemPropsType) => {
   const renameFolder = () => {
     setRenaming(true);
     handleShowEditButtons();
+    setAreEditbuttonsVisible(false);
   };
   const handleDeleteClick = () => {
     props.showConfirmation(props.folder.id);
+    setAreEditbuttonsVisible(false);
   };
 
   return (

@@ -4,12 +4,15 @@ import FolderItem from "../components/FolderItem";
 import { ConfirmDeleting } from "../components/ConfirmDeleting";
 import { Folder, Folders } from "../types";
 import PlusButton from "../components/PlusButton";
-import { FoldersContext } from "../App";
+import { useFolderContextV2 } from "../App";
 import { v4 as uuid } from "uuid";
 import { FolderListContainer, Root } from "../styles/FolderListPage.styled";
 
-const FolderListPage = () => {
-  const { folders, changeFolders } = useContext(FoldersContext);
+type FolderListPagePropsType = {};
+
+const FolderListPage = (props: FolderListPagePropsType) => {
+  //const { folders, changeFolders } = useContext(FoldersContext);
+  const { folders, changeFolders } = useContext(useFolderContextV2());
 
   const [isPlusButtonDisabled, setIsPlusButtonDisabled] = useState(false);
   const [isEditButtonDisabled, setIsEditButtonDisabled] = useState(false);
@@ -24,7 +27,10 @@ const FolderListPage = () => {
       folderName: "",
       habits: [],
     };
-    changeFolders([...folders, newFolder]);
+    const foldersCopy = [...folders, newFolder];
+    changeFolders(foldersCopy);
+
+    console.log("inside add new folder", folders);
     setIsPlusButtonDisabled(true);
     setAreThreeDotsVisible(false);
     setIsEditButtonDisabled(true);
@@ -38,8 +44,8 @@ const FolderListPage = () => {
     const foldersCopy = [...folders];
 
     foldersCopy.splice(updatedFolderIndex, 1, updatedFolder);
-
     changeFolders(foldersCopy);
+    console.log("inside update", folders);
     setIsPlusButtonDisabled(false);
     setIsEditButtonDisabled(false);
   };
@@ -57,9 +63,14 @@ const FolderListPage = () => {
     );
     setFolderIdToDelete(undefined);
     changeFolders(foldersCopy);
+    setIsEditButtonDisabled(false);
   };
   const handleShowConfirmation = (folderId: string) => {
     setFolderIdToDelete(folderId);
+  };
+  const cancelDeletion = () => {
+    setFolderIdToDelete(undefined);
+    setIsEditButtonDisabled(false);
   };
 
   return (
@@ -87,7 +98,10 @@ const FolderListPage = () => {
       </FolderListContainer>
       <PlusButton disabled={isPlusButtonDisabled} onNewFolder={addNewFolder} />
       {folderIdToDelete !== undefined && (
-        <ConfirmDeleting delete={deleteFolder}></ConfirmDeleting>
+        <ConfirmDeleting
+          delete={deleteFolder}
+          cancel={cancelDeletion}
+        ></ConfirmDeleting>
       )}
     </Root>
   );
