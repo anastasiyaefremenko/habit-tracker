@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import "./App.css";
 import FolderListPage from "./views/FolderListPage";
 import { Folders, FoldersContextType } from "./types";
-
+import HabitsListPage from "./views/HabitsListPage";
 export const useFolderContextV2 = () => {
   const foldersStringFromStorage = localStorage.getItem("folders");
 
@@ -31,8 +31,8 @@ export const useFolderContextV2 = () => {
 
 const App = () => {
   const [views, setViews] = useState({
-    showFoldersListPage: true,
-    showHabitsPage: false,
+    showFoldersListPage: false,
+    showHabitsPage: true,
     showCreateHabitPage: false,
     showMarkHabitPage: false,
   });
@@ -42,6 +42,7 @@ const App = () => {
   return (
     <ContextV2.Provider value={{ folders: [], changeFolders: () => {} }}>
       <div>{views.showFoldersListPage && <FolderListPage />}</div>
+      <div>{views.showHabitsPage && <HabitsListPage />}</div>
     </ContextV2.Provider>
   );
 };
