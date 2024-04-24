@@ -65,7 +65,7 @@ const FolderItem = (props: FolderItemPropsType) => {
           onChange={handleInputChange}
           value={renaming ? newFolderName : props.folder.folderName}
           disabled={!renaming}
-          placeholder="Folder Name"
+          placeholder="Folder name"
           name="folder"
           onKeyDown={renaming ? confirmChange : () => {}}
           autoFocus

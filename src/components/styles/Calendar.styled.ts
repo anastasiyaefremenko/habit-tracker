@@ -1,4 +1,5 @@
 import styled from "styled-components";
+import { themeColorTertiary, CustomColor } from "../../styles/themeColors";
 
 export const Root = styled.div`
   padding-inline: 30px;
@@ -13,9 +14,9 @@ export const CircleContainer = styled.div`
   align-items: center;
 `;
 
-export const Circle = styled.div<{ marked?: boolean; isToday: boolean }>`
-  background-color: ${(props) => (props.marked ? "#bcd1f0" : "transparent")};
-  outline: ${(props) => props.isToday && "1px dashed #909090"};
+export const Circle = styled.div<{ $marked: boolean; $isToday: boolean }>`
+  background-color: ${(props) => (props.$marked ? CustomColor : "transparent")};
+  outline: ${(props) => props.$isToday && "1px dashed #909090"};
   display: flex;
   justify-content: center;
   align-items: center;
@@ -24,8 +25,8 @@ export const Circle = styled.div<{ marked?: boolean; isToday: boolean }>`
   border-radius: 100%;
 `;
 
-export const DateNumber = styled.p<{ marked?: boolean }>`
-  color: ${(props) => (props.marked ? "#FFFFFF" : "#8f9db6")};
+export const DateNumber = styled.p<{ $marked: boolean }>`
+  color: ${(props) => (props.$marked ? "#FFFFFF" : themeColorTertiary)};
   font-family: "Libre Caslon Display", serif;
   //color: #8f9db6;
   font-size: 16px;

@@ -1,4 +1,5 @@
 import React from "react";
+import date from "date-and-time";
 import {
   Root,
   Circle,
@@ -6,48 +7,53 @@ import {
   CircleContainer,
 } from "./styles/Calendar.styled";
 
-const Calendar = () => {
-  const weekDays = {
-    monday: 1,
-    tuesday: 2,
-    wednesday: 3,
-    thursday: 4,
-    friday: 5,
-    saturday: 6,
-    sunday: 7,
-  };
+const MONTH_NAMES: Record<string, number> = {
+  January: 0,
+  February: 1,
+  March: 2,
+  April: 3,
+  May: 4,
+  June: 5,
+  July: 6,
+  August: 7,
+  September: 8,
+  October: 9,
+  November: 10,
+  December: 11,
+};
 
-  const dateIndexToWeekdaysMap = {
-    0: weekDays.sunday,
-    1: weekDays.monday,
-    2: weekDays.tuesday,
-    3: weekDays.wednesday,
-    4: weekDays.thursday,
-    5: weekDays.friday,
-    6: weekDays.saturday,
-  };
+const WEEK_DAYS: Record<string, number> = {
+  Monday: 0,
+  Tuesday: 1,
+  Wednesday: 2,
+  Thursday: 3,
+  Friday: 4,
+  Saturday: 5,
+  Sunday: 6,
+};
 
-  const firstDayOfTheMonthIndex = 5; // sunday
-  const firstDayOfTheMonth = dateIndexToWeekdaysMap[firstDayOfTheMonthIndex];
-  const d = new Date();
-  const today = d.getDate();
-  const days = [];
-  for (let i = 1; i < 31; i++) {
-    const marked = i < 15;
+const Calendar = (props: any) => {
+  const firstDayOfMonth = new Date(props.year, MONTH_NAMES[props.month], 1);
+  const firstDayOfTheWeek = date.format(firstDayOfMonth, "dddd");
+  const currentDay = new Date();
+  const days: any = [];
+
+  const numberOfEmptyContainers = WEEK_DAYS[firstDayOfTheWeek];
+  for (let i = 0; i < numberOfEmptyContainers; i++) {
+    days.push(<CircleContainer key={i}></CircleContainer>);
+  }
+  const daysInMonth = new Date(2024, 4, 0).getDate();
+  const DAY_ONE = 1;
+  for (let i = DAY_ONE; i <= daysInMonth; i++) {
     days.push(
-      i >= firstDayOfTheMonth ? (
-        <CircleContainer>
-          <Circle key={i} marked={marked} isToday={i === today}>
-            <DateNumber marked={marked}>
-              {i - (firstDayOfTheMonth - 1)}
-            </DateNumber>
-          </Circle>
-        </CircleContainer>
-      ) : (
-        <CircleContainer></CircleContainer>
-      )
+      <CircleContainer key={i}>
+        <Circle $marked={props.marked} $isToday={i === currentDay.getDate()}>
+          <DateNumber $marked={props.marked}>{i}</DateNumber>
+        </Circle>
+      </CircleContainer>
     );
   }
+
   return (
     <div>
       <Root>{days}</Root>
