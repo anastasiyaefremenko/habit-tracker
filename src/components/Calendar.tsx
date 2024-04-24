@@ -45,9 +45,13 @@ const Calendar = (props: any) => {
   const daysInMonth = new Date(2024, 4, 0).getDate();
   const DAY_ONE = 1;
   for (let i = DAY_ONE; i <= daysInMonth; i++) {
+    const thisDay = new Date(props.year, MONTH_NAMES[props.month], i);
+    const formattedThisDay = date.format(thisDay, "YYYY-MM-DD");
+    const isThisDayMarked = props.daysToMark.includes(formattedThisDay);
+
     days.push(
       <CircleContainer key={i}>
-        <Circle $marked={props.marked} $isToday={i === currentDay.getDate()}>
+        <Circle $marked={isThisDayMarked} $isToday={i === currentDay.getDate()}>
           <DateNumber $marked={props.marked}>{i}</DateNumber>
         </Circle>
       </CircleContainer>

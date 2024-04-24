@@ -3,13 +3,13 @@ import Calendar from "../components/Calendar";
 import CalendarTitle from "../components/CalendarTitle";
 import HabitNameItem from "../components/HabitNameItem";
 import CalendarHeader from "../components/CalendarHeader";
-import { Folder, Folders, Habit } from "../types";
+import { Folder, Habit } from "../types";
 import date from "date-and-time";
 
 const HabitsListPage = () => {
   const today = new Date();
-  const myDate = date.format(today, "YYYY-MM-DD");
   const currentMonth = date.format(today, "MMMM");
+
   const currentYear = date.format(today, "YYYY");
 
   const folder: Folder = {
@@ -28,25 +28,25 @@ const HabitsListPage = () => {
           "2024-03-08",
           "2024-03-10",
           "2024-03-12",
-          "2024-03-14",
+          "2024-04-14",
           "2024-03-17",
           "2024-03-15",
-          "2024-03-24",
+          "2024-04-24",
           "2024-03-23",
-          "2024-03-22",
+          "2024-04-22",
         ],
         habitColour: "#BCD1F0",
       },
       {
         id: "5678",
         habitName: "Stretching",
-        markedDays: ["2024-03-04"],
+        markedDays: ["2024-04-04"],
         habitColour: "#BCD1F0",
       },
       {
         id: "9012",
         habitName: "Drink Water",
-        markedDays: ["2024-03-04"],
+        markedDays: ["2024-04-12"],
         habitColour: "#BCD1F0",
       },
     ],
@@ -59,7 +59,11 @@ const HabitsListPage = () => {
       {folder.habits.map((habit: Habit) => (
         <div>
           <HabitNameItem habitName={habit.habitName} />
-          <Calendar marked={false} month={currentMonth} year={currentYear} />
+          <Calendar
+            daysToMark={habit.markedDays}
+            month={currentMonth}
+            year={currentYear}
+          />
         </div>
       ))}
     </div>

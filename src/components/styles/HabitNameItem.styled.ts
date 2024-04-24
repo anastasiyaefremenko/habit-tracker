@@ -12,7 +12,7 @@ export const Root = styled.div<{ color?: string }>`
   margin-bottom: 6px;
   padding-inline: 30px;
   margin-bottom: 28px;
-  margin-top: 28px;
+  margin-top: 20px;
 `;
 
 export const FolderNameInput = styled.input`
