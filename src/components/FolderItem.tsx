@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useContext } from "react";
 import {
   StyledFolderIcon,
   FolderNameInput,
@@ -13,6 +13,8 @@ import {
   InputContainer,
 } from "./styles/FolderItem.styled";
 import { Folder } from "../types";
+import { useFolderContextV2 } from "../App";
+import { FOLDER_LIST, CALENDAR_PAGE } from "../views/views";
 
 type FolderItemPropsType = {
   folder: Folder;
@@ -28,6 +30,9 @@ const FolderItem = (props: FolderItemPropsType) => {
   const [newFolderName, setNewFolderName] = useState("");
   const [renaming, setRenaming] = useState(props.startRenaming);
   const [areEditButtonsVisible, setAreEditbuttonsVisible] = useState(false);
+  const { currentFolder, setCurrentFolder, view, setView } = useContext(
+    useFolderContextV2()
+  );
 
   function handleInputChange(event: any) {
     setNewFolderName(event.target.value);
@@ -54,10 +59,14 @@ const FolderItem = (props: FolderItemPropsType) => {
     props.showConfirmation(props.folder.id);
     setAreEditbuttonsVisible(false);
   };
-
+  const clickAlert = () => {
+    console.log("clicked alert");
+    setCurrentFolder(props.folder);
+    setView(CALENDAR_PAGE);
+  };
   return (
     <Root>
-      <InputContainer>
+      <InputContainer onClick={clickAlert}>
         <Label htmlFor="folder">
           <StyledFolderIcon></StyledFolderIcon>
         </Label>

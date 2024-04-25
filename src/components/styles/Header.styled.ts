@@ -2,7 +2,7 @@ import styled from "styled-components";
 
 const Root = styled.div`
   padding-top: 60px;
-  padding-inline: 30px;
+  padding-inline: 28px;
   margin-bottom: 16px;
   position: sticky;
   top: 0;

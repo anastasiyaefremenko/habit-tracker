@@ -20,4 +20,8 @@ export type ContextualMenuContextType = {
 export type FoldersContextType = {
   folders: Folders;
   changeFolders: any;
+  currentFolder: Folder | undefined;
+  setCurrentFolder: any;
+  view: any;
+  setView: any;
 };

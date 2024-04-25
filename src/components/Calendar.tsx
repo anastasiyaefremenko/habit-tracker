@@ -52,7 +52,7 @@ const Calendar = (props: any) => {
     days.push(
       <CircleContainer key={i}>
         <Circle $marked={isThisDayMarked} $isToday={i === currentDay.getDate()}>
-          <DateNumber $marked={props.marked}>{i}</DateNumber>
+          <DateNumber $marked={isThisDayMarked}>{i}</DateNumber>
         </Circle>
       </CircleContainer>
     );

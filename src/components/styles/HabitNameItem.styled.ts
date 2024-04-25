@@ -10,9 +10,9 @@ export const Root = styled.div<{ color?: string }>`
   display: flex;
   justify-content: space-between;
   margin-bottom: 6px;
-  padding-inline: 30px;
+  padding-inline: 28px;
   margin-bottom: 28px;
-  margin-top: 20px;
+  //margin-top: 20px;
 `;
 
 export const FolderNameInput = styled.input`
@@ -22,7 +22,6 @@ export const FolderNameInput = styled.input`
   border: none;
   outline: none;
   background-color: transparent;
-  //background-color: aliceblue;
   height: 38px;
 
   &:disabled {
