@@ -4,15 +4,14 @@ import FolderItem from "../components/FolderItem";
 import { ConfirmDeleting } from "../components/ConfirmDeleting";
 import { Folder, Folders } from "../types";
 import PlusButton from "../components/PlusButton";
-import { useFolderContextV2 } from "../App";
+import { ContextV2, useFolderContextV2 } from "../App";
 import { v4 as uuid } from "uuid";
 import { FolderListContainer, Root } from "../styles/FolderListPage.styled";
 
 type FolderListPagePropsType = {};
 
 const FolderListPage = (props: FolderListPagePropsType) => {
-  //const { folders, changeFolders } = useContext(FoldersContext);
-  const { folders, changeFolders } = useContext(useFolderContextV2());
+  const { folders, changeFolders } = useContext(ContextV2);
 
   const [isPlusButtonDisabled, setIsPlusButtonDisabled] = useState(false);
   const [isEditButtonDisabled, setIsEditButtonDisabled] = useState(false);
@@ -76,7 +75,7 @@ const FolderListPage = (props: FolderListPagePropsType) => {
   return (
     <Root>
       <Header
-        back={false}
+        showBack={true}
         title={"Folders"}
         onEdit={showThreeDotsButoon}
         editButtonDisabled={isEditButtonDisabled}
@@ -93,7 +92,7 @@ const FolderListPage = (props: FolderListPagePropsType) => {
             hideThreeDots={hideThreeDotsButoon}
             delete={deleteFolder}
             showConfirmation={handleShowConfirmation}
-          ></FolderItem>
+          />
         ))}
       </FolderListContainer>
       <PlusButton disabled={isPlusButtonDisabled} onNewFolder={addNewFolder} />

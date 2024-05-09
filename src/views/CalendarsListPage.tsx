@@ -6,10 +6,9 @@ import CalendarHeader from "../components/CalendarHeader";
 import { Folder, Habit } from "../types";
 import date from "date-and-time";
 
-const HabitsListPage = () => {
+const CalendarsListPage = () => {
   const today = new Date();
   const currentMonth = date.format(today, "MMMM");
-
   const currentYear = date.format(today, "YYYY");
 
   const folder: Folder = {
@@ -40,14 +39,14 @@ const HabitsListPage = () => {
       {
         id: "5678",
         habitName: "Stretching",
-        markedDays: ["2024-04-04"],
-        habitColour: "#BCD1F0",
+        markedDays: ["2024-04-04", "2024-04-14", "2024-04-17", "2024-04-15"],
+        habitColour: "#C1CBDB",
       },
       {
         id: "9012",
         habitName: "Drink Water",
-        markedDays: ["2024-04-12"],
-        habitColour: "#BCD1F0",
+        markedDays: ["2024-04-12", "2024-04-22", "2024-04-24", "2024-04-19"],
+        habitColour: "#E8E0D7",
       },
     ],
   };
@@ -63,6 +62,7 @@ const HabitsListPage = () => {
             daysToMark={habit.markedDays}
             month={currentMonth}
             year={currentYear}
+            customColor={habit.habitColour}
           />
         </div>
       ))}
@@ -70,4 +70,4 @@ const HabitsListPage = () => {
   );
 };
 
-export default HabitsListPage;
+export default CalendarsListPage;

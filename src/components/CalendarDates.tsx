@@ -2,10 +2,12 @@ import React from "react";
 import date from "date-and-time";
 import {
   Root,
-  Circle,
   DateNumber,
   CircleContainer,
-} from "./styles/Calendar.styled";
+  PieChartContainer,
+} from "./styles/CalendarDates.styled";
+import { PieChart } from "react-minimal-pie-chart";
+import { Habit } from "../types";
 
 const MONTH_NAMES: Record<string, number> = {
   January: 0,
@@ -32,7 +34,7 @@ const WEEK_DAYS: Record<string, number> = {
   Sunday: 6,
 };
 
-const Calendar = (props: any) => {
+const CalendarDates = (props: any) => {
   const firstDayOfMonth = new Date(props.year, MONTH_NAMES[props.month], 1);
   const firstDayOfTheWeek = date.format(firstDayOfMonth, "dddd");
   const currentDay = new Date();
@@ -47,17 +49,32 @@ const Calendar = (props: any) => {
   for (let i = DAY_ONE; i <= daysInMonth; i++) {
     const thisDay = new Date(props.year, MONTH_NAMES[props.month], i);
     const formattedThisDay = date.format(thisDay, "YYYY-MM-DD");
-    const isThisDayMarked = props.daysToMark.includes(formattedThisDay);
 
+    const isThisDayMarkedWithSomeHabit = props.folder.habits.some(
+      (habit: any) => habit.markedDays.includes(formattedThisDay)
+    );
     days.push(
-      <CircleContainer key={i}>
-        <Circle
-          $marked={isThisDayMarked}
-          $isToday={i === currentDay.getDate()}
-          $customColor={props.customColor}
-        >
-          <DateNumber $marked={isThisDayMarked}>{i}</DateNumber>
-        </Circle>
+      <CircleContainer key={i + numberOfEmptyContainers}>
+        <PieChartContainer $isToday={i === currentDay.getDate()}>
+          {isThisDayMarkedWithSomeHabit && (
+            <PieChart
+              data={props.folder.habits
+                .filter((habit: Habit) =>
+                  habit.markedDays.includes(formattedThisDay)
+                )
+                .map((habit: Habit) => ({
+                  value: 1,
+                  color: habit.habitColour,
+                }))}
+              startAngle={90}
+              style={{
+                height: "24px",
+              }}
+            />
+          )}
+        </PieChartContainer>
+
+        <DateNumber $marked={isThisDayMarkedWithSomeHabit}>{i}</DateNumber>
       </CircleContainer>
     );
   }
@@ -69,4 +86,4 @@ const Calendar = (props: any) => {
   );
 };
 
-export default Calendar;
+export default CalendarDates;

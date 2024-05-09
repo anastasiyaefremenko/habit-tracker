@@ -1,7 +1,11 @@
-import React, { useContext, useEffect, useState } from "react";
+import React, { useContext, useEffect, useMemo, useState } from "react";
 import "./App.css";
 import { Folders, FoldersContextType } from "./types";
-import { FOLDER_LIST, CALENDAR_PAGE } from "./views/views";
+import FolderListPage from "./views/FolderListPage";
+import CalendarsListPage from "./views/CalendarsListPage";
+import { Pages } from "./views/views";
+import HabitsPage from "./views/HabitsPage";
+import CreateNewHabitPage from "./views/CreateNewHabitPage";
 
 export const useFolderContextV2 = () => {
   const foldersStringFromStorage = localStorage.getItem("folders");
@@ -13,7 +17,8 @@ export const useFolderContextV2 = () => {
 
   const [folders, changeFolders] = useState<Folders>(data);
   const [currentFolder, setCurrentFolder] = useState(undefined);
-  const [view, setView] = useState(FOLDER_LIST);
+  const [view, setView] = useState(Pages.FOLDER_LIST);
+  //const [view, setView] = useState(Pages.HABITS_PAGE);
 
   const saveFoldersToLocalStorage = (foldersToSave: Folders) => {
     window.localStorage.setItem("folders", JSON.stringify(foldersToSave));
@@ -25,28 +30,44 @@ export const useFolderContextV2 = () => {
     );
   }, [folders, view]);
 
-  return React.createContext<FoldersContextType>({
+  return {
     folders: folders,
     changeFolders: changeFolders,
     currentFolder: currentFolder,
     setCurrentFolder: setCurrentFolder,
     view: view,
     setView: setView,
-  });
+  };
 };
 
+export const ContextV2 = React.createContext<FoldersContextType>({
+  folders: [],
+  changeFolders: () => {},
+  currentFolder: undefined,
+  setCurrentFolder: () => {},
+  view: undefined,
+  setView: () => {},
+});
+
 const App = () => {
-  const ContextV2 = useFolderContextV2();
+  const {
+    folders,
+    changeFolders,
+    currentFolder,
+    setCurrentFolder,
+    view,
+    setView,
+  } = useFolderContextV2();
 
   return (
     <ContextV2.Provider
       value={{
-        folders: [],
-        changeFolders: () => {},
-        currentFolder: undefined,
-        setCurrentFolder: () => {},
-        view: undefined,
-        setView: () => {},
+        folders,
+        changeFolders,
+        currentFolder,
+        setCurrentFolder,
+        view,
+        setView,
       }}
     >
       <View />
@@ -55,17 +76,17 @@ const App = () => {
 };
 
 const View = () => {
-  const ContextV2 = useFolderContextV2();
   const { view, currentFolder, setView } = useContext(ContextV2);
 
-  console.log({ view, currentFolder, setView });
-
-  useEffect(() => {
-    console.log({ view });
-    console.log({ currentFolder });
-    console.log({ setView });
-  }, [view, currentFolder]);
-  return <div>{view}</div>;
+  useEffect(() => {}, [view, currentFolder]);
+  return (
+    <div>
+      {view === Pages.FOLDER_LIST && <FolderListPage />}
+      {view === Pages.CALENDAR_PAGE && <CalendarsListPage />}
+      {view === Pages.HABITS_PAGE && <HabitsPage />}
+      {view === Pages.CREATE_HABIT_PAGE && <CreateNewHabitPage />}
+    </div>
+  );
 };
 
 export default App;

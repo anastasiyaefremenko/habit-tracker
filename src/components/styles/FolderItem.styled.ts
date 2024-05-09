@@ -50,6 +50,7 @@ const FolderNameInput = styled.input`
 
   &:disabled {
     color: black;
+    pointer-events: none;
   }
 `;
 const Root = styled.div<{ color?: string }>`
@@ -58,11 +59,10 @@ const Root = styled.div<{ color?: string }>`
   display: flex;
   justify-content: space-between;
   margin-bottom: 6px;
-  padding-inline: 28px;
+  padding-inline: 30px;
 `;
 const Label = styled.label`
   display: flex;
-  //margin-left: 30px;
 `;
 const ThreeDotsButton = styled.button<{ color?: string }>`
   color: ${(props) => (props.color ? props.color : themeColorSecondary)};
@@ -70,7 +70,6 @@ const ThreeDotsButton = styled.button<{ color?: string }>`
   font-weight: 900;
   border: none;
   display: flex;
-  margin-right: 0px;
 `;
 const FolderButtonsContainer = styled.div`
   display: flex;
@@ -81,6 +80,7 @@ const FolderButtonsContainer = styled.div`
 const InputContainer = styled.div`
   display: flex;
   align-items: center;
+  width: 100%;
 `;
 
 export {

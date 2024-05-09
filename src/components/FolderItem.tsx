@@ -13,8 +13,8 @@ import {
   InputContainer,
 } from "./styles/FolderItem.styled";
 import { Folder } from "../types";
-import { useFolderContextV2 } from "../App";
-import { FOLDER_LIST, CALENDAR_PAGE } from "../views/views";
+import { ContextV2 } from "../App";
+import { Pages } from "../views/views";
 
 type FolderItemPropsType = {
   folder: Folder;
@@ -30,9 +30,8 @@ const FolderItem = (props: FolderItemPropsType) => {
   const [newFolderName, setNewFolderName] = useState("");
   const [renaming, setRenaming] = useState(props.startRenaming);
   const [areEditButtonsVisible, setAreEditbuttonsVisible] = useState(false);
-  const { currentFolder, setCurrentFolder, view, setView } = useContext(
-    useFolderContextV2()
-  );
+  const { currentFolder, setCurrentFolder, view, setView } =
+    useContext(ContextV2);
 
   function handleInputChange(event: any) {
     setNewFolderName(event.target.value);
@@ -59,10 +58,10 @@ const FolderItem = (props: FolderItemPropsType) => {
     props.showConfirmation(props.folder.id);
     setAreEditbuttonsVisible(false);
   };
-  const clickAlert = () => {
-    console.log("clicked alert");
+  const clickAlert = (event: React.MouseEvent<HTMLElement>) => {
+    //event.stopPropagation();
     setCurrentFolder(props.folder);
-    setView(CALENDAR_PAGE);
+    setView(Pages.HABITS_PAGE);
   };
   return (
     <Root>

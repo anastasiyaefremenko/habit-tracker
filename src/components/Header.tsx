@@ -10,14 +10,14 @@ import {
 } from "./styles/Header.styled";
 
 type HeaderPropsType = {
-  back: boolean;
+  showBack: boolean;
   title: String | undefined;
-  onEdit: () => void;
-  editButtonDisabled: boolean;
+  onEdit?: () => void;
+  editButtonDisabled?: boolean;
 };
 
 const Header = ({
-  back,
+  showBack,
   title,
   onEdit,
   editButtonDisabled,
@@ -25,9 +25,14 @@ const Header = ({
   return (
     <Root>
       <HeaderContainer>
-        <LeftContainer>{back && <BackButton />}</LeftContainer>
+        <LeftContainer>{showBack && <BackButton />}</LeftContainer>
         <RightContainer>
-          <EditButton onEdit={onEdit} editButtonDisabled={editButtonDisabled} />
+          {onEdit !== undefined && editButtonDisabled !== undefined && (
+            <EditButton
+              onEdit={onEdit}
+              editButtonDisabled={editButtonDisabled}
+            />
+          )}
         </RightContainer>
       </HeaderContainer>
       {title && <Title title={title} />}

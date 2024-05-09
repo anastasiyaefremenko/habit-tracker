@@ -4,7 +4,7 @@ import { themeColorTertiary } from "../../styles/themeColors";
 export const Root = styled.div`
   padding-top: 60px;
   padding-inline: 28px;
-  margin-bottom: 26px;
+  margin-bottom: 28px;
   display: flex;
   justify-content: space-between;
   position: sticky;
