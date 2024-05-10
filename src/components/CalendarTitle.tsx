@@ -4,11 +4,13 @@ import { Root, NavigationButton, Title } from "./styles/CalendarTitle.styled";
 const CalendarTitle = (props: any) => {
   return (
     <Root>
-      <NavigationButton>{"<"}</NavigationButton>
+      <NavigationButton onClick={props.showPreviousMonth}>
+        {"<"}
+      </NavigationButton>
       <Title>
         {props.month} {props.year}
       </Title>
-      <NavigationButton>{">"}</NavigationButton>
+      <NavigationButton onClick={props.showNextMonth}>{">"}</NavigationButton>
     </Root>
   );
 };

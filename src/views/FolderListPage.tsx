@@ -75,7 +75,7 @@ const FolderListPage = (props: FolderListPagePropsType) => {
   return (
     <Root>
       <Header
-        showBack={true}
+        showBack={false}
         title={"Folders"}
         onEdit={showThreeDotsButoon}
         editButtonDisabled={isEditButtonDisabled}

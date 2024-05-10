@@ -37,6 +37,10 @@ export const HabitName = styled.input<{ show?: boolean }>`
   background-color: transparent;
   height: 38px;
   margin-left: 20px;
+  &:disabled {
+    //color: #2b2b2b;
+    pointer-events: none;
+  }
 `;
 export const EyeButton = styled.button`
   border: none;

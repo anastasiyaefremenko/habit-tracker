@@ -47,7 +47,6 @@ const FolderNameInput = styled.input`
   background-color: transparent;
   height: 38px;
   margin-left: 14px;
-
   &:disabled {
     color: black;
     pointer-events: none;

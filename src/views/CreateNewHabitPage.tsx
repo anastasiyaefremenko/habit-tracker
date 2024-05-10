@@ -59,7 +59,11 @@ const CreateNewHabitPage = () => {
 
   return (
     <div>
-      <Header showBack={true} title={"New habit"}></Header>
+      <Header
+        showBack={true}
+        title={"New habit"}
+        onClick={() => setView(Pages.HABITS_PAGE)}
+      ></Header>
       <CreateHabitField
         color={color}
         showColorPicker={handleSetShowColorPicker}

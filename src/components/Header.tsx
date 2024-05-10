@@ -13,6 +13,7 @@ type HeaderPropsType = {
   showBack: boolean;
   title: String | undefined;
   onEdit?: () => void;
+  onClick?: () => void;
   editButtonDisabled?: boolean;
 };
 
@@ -20,12 +21,15 @@ const Header = ({
   showBack,
   title,
   onEdit,
+  onClick,
   editButtonDisabled,
 }: HeaderPropsType) => {
   return (
     <Root>
       <HeaderContainer>
-        <LeftContainer>{showBack && <BackButton />}</LeftContainer>
+        <LeftContainer>
+          {showBack && <BackButton onClick={onClick} />}
+        </LeftContainer>
         <RightContainer>
           {onEdit !== undefined && editButtonDisabled !== undefined && (
             <EditButton

@@ -58,18 +58,21 @@ const FolderItem = (props: FolderItemPropsType) => {
     props.showConfirmation(props.folder.id);
     setAreEditbuttonsVisible(false);
   };
-  const clickAlert = (event: React.MouseEvent<HTMLElement>) => {
-    //event.stopPropagation();
+  const showHabitPage = (event: React.MouseEvent<HTMLElement>) => {
+    event.stopPropagation();
     setCurrentFolder(props.folder);
     setView(Pages.HABITS_PAGE);
   };
   return (
     <Root>
-      <InputContainer onClick={clickAlert}>
+      <InputContainer onClick={showHabitPage}>
         <Label htmlFor="folder">
           <StyledFolderIcon></StyledFolderIcon>
         </Label>
         <FolderNameInput
+          onClick={(e) => {
+            e.stopPropagation();
+          }}
           onChange={handleInputChange}
           value={renaming ? newFolderName : props.folder.folderName}
           disabled={!renaming}

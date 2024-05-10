@@ -49,18 +49,26 @@ const CalendarDates = (props: any) => {
   for (let i = DAY_ONE; i <= daysInMonth; i++) {
     const thisDay = new Date(props.year, MONTH_NAMES[props.month], i);
     const formattedThisDay = date.format(thisDay, "YYYY-MM-DD");
-
-    const isThisDayMarkedWithSomeHabit = props.folder.habits.some(
-      (habit: any) => habit.markedDays.includes(formattedThisDay)
+    const isThisDayMarkedWithSomeHabitAndNotFiltered = props.folder.habits.some(
+      (habit: any) =>
+        habit.markedDays.includes(formattedThisDay) &&
+        !props.hiddenHabits.includes(habit.id)
     );
     days.push(
       <CircleContainer key={i + numberOfEmptyContainers}>
-        <PieChartContainer $isToday={i === currentDay.getDate()}>
-          {isThisDayMarkedWithSomeHabit && (
+        <PieChartContainer
+          $isToday={
+            date.format(thisDay, "YYYY-MM-DD") ===
+            date.format(currentDay, "YYYY-MM-DD")
+          }
+        >
+          {isThisDayMarkedWithSomeHabitAndNotFiltered && (
             <PieChart
               data={props.folder.habits
-                .filter((habit: Habit) =>
-                  habit.markedDays.includes(formattedThisDay)
+                .filter(
+                  (habit: Habit) =>
+                    habit.markedDays.includes(formattedThisDay) &&
+                    !props.hiddenHabits.includes(habit.id)
                 )
                 .map((habit: Habit) => ({
                   value: 1,
@@ -74,7 +82,9 @@ const CalendarDates = (props: any) => {
           )}
         </PieChartContainer>
 
-        <DateNumber $marked={isThisDayMarkedWithSomeHabit}>{i}</DateNumber>
+        <DateNumber $marked={isThisDayMarkedWithSomeHabitAndNotFiltered}>
+          {i}
+        </DateNumber>
       </CircleContainer>
     );
   }

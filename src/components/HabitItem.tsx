@@ -10,16 +10,16 @@ import {
 } from "./styles/HabitItem.styled";
 
 const HabitItem = (props: any) => {
-  const [showEye, setShowEye] = useState(true);
+  //const [showEye, setShowEye] = useState(true);
   return (
     <Root>
       <HabitItemContainer>
         <div>
-          <HabitColor customColor={props.customColor} show={showEye} />
-          <HabitName value={props.name} show={showEye} />
+          <HabitColor customColor={props.customColor} show={props.showEye} />
+          <HabitName value={props.name} show={props.showEye} disabled={true} />
         </div>
-        <EyeButton onClick={() => setShowEye(!showEye)}>
-          {showEye ? <EyeIcon /> : <ClosedEyeIcon />}
+        <EyeButton onClick={props.setShowEye}>
+          {props.showEye ? <EyeIcon /> : <ClosedEyeIcon />}
         </EyeButton>
       </HabitItemContainer>
     </Root>
