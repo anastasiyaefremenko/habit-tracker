@@ -3,4 +3,5 @@ export enum Pages {
   CALENDAR_PAGE,
   HABITS_PAGE,
   CREATE_HABIT_PAGE,
+  MARK_DAY_PAGE,
 }

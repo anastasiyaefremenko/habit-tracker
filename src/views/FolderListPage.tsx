@@ -44,7 +44,6 @@ const FolderListPage = (props: FolderListPagePropsType) => {
 
     foldersCopy.splice(updatedFolderIndex, 1, updatedFolder);
     changeFolders(foldersCopy);
-    console.log("inside update", folders);
     setIsPlusButtonDisabled(false);
     setIsEditButtonDisabled(false);
   };

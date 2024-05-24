@@ -15,6 +15,7 @@ const HabitsPage = (props: any) => {
   const [monthToShow, setMonthToShow] = useState(new Date());
   const [currentMonth, setCurrentMonth] = useState(date.format(today, "MMMM"));
   const [currentYear, setCurrentYear] = useState(date.format(today, "YYYY"));
+  const [isEditButtonDisabled, setIsEditButtonDisabled] = useState(false);
 
   const getPreviousMonth = () => {
     const previousMonth = new Date(monthToShow.getTime());
@@ -31,8 +32,14 @@ const HabitsPage = (props: any) => {
     setMonthToShow(nextMonth);
   };
 
-  const { currentFolder, setCurrentFolder, view, setView } =
-    useContext(ContextV2);
+  const {
+    folders,
+    changeFolders,
+    currentFolder,
+    setCurrentFolder,
+    view,
+    setView,
+  } = useContext(ContextV2);
   const [hiddenHabitsFilter, setHiddenHabitsFilter] = useState<string[]>([]);
 
   const handleFilterChange = (idChange: string) => {
@@ -45,10 +52,39 @@ const HabitsPage = (props: any) => {
       setHiddenHabitsFilter([...hiddenHabitsFilter, idChange]);
     }
   };
+  const [showDots, setShowDots] = useState(false);
+  const [showEyes, setShowEyes] = useState(true);
+  const onEdit = () => {
+    setShowDots(true);
+    setShowEyes(false);
+    setIsEditButtonDisabled(true);
+  };
+  const hideThreeDotsButoon = () => {
+    setShowDots(false);
+  };
+  const updateHabit = (updatedHabit: Habit) => {
+    const updatedHabitIndex = currentFolder?.habits.findIndex(
+      (habit) => habit.id === updatedHabit.id
+    );
+    const foldersCopy = [...folders];
+    if (updatedHabitIndex !== undefined) {
+      foldersCopy.forEach((folder: Folder) => {
+        if (folder.id === currentFolder?.id) {
+          folder.habits.splice(updatedHabitIndex, 1, updatedHabit);
+        }
+      });
+      changeFolders(foldersCopy);
+    }
+    setIsEditButtonDisabled(false);
+    //changeFolders(foldersCopy)
+  };
 
   return (
     <div>
-      <CalendarHeader />
+      <CalendarHeader
+        onEdit={onEdit}
+        editButtonDisabled={isEditButtonDisabled}
+      />
       <CalendarTitle
         month={currentMonth}
         year={currentYear}
@@ -64,11 +100,15 @@ const HabitsPage = (props: any) => {
       />
       {currentFolder?.habits.map((habit: Habit) => (
         <HabitItem
-          name={habit.habitName}
-          customColor={habit.habitColour}
+          onConfirm={updateHabit}
+          habit={habit}
+          startRenaming={habit.habitName === ""}
           id={habit.id}
           showEye={!hiddenHabitsFilter.find((id) => id === habit.id)}
           setShowEye={() => handleFilterChange(habit.id)}
+          showDots={showDots}
+          showEyes={showEyes}
+          hideThreeDots={hideThreeDotsButoon}
         />
       ))}
 

@@ -1,15 +1,17 @@
 import React from "react";
 import styled from "styled-components";
-import { GiRaddish } from "react-icons/gi";
 import { themeColorSecondary } from "../styles/themeColors";
 import { BsCalendarPlus } from "react-icons/bs";
+import { PiListPlusLight } from "react-icons/pi";
+import { PiListPlus } from "react-icons/pi";
 
 const Root = styled.div`
   display: flex;
+  padding-inline: 28px;
   justify-content: flex-end;
   align-items: center;
   background-color: white;
-  padding-right: 24px;
+  //padding-right: 24px;
   position: fixed;
   bottom: 0;
   width: 100%;
@@ -20,10 +22,10 @@ const StyledCreateHabbitButton = styled.button`
   background: transparent;
   padding-bottom: 30px;
 `;
-const StyledCreateHabbitIcon = styled(BsCalendarPlus)<{ color?: string }>`
+const StyledCreateHabbitIcon = styled(PiListPlusLight)<{ color?: string }>`
   color: ${(props) => (props.color ? props.color : themeColorSecondary)};
-  height: 30px;
-  width: 30px;
+  height: 31px;
+  width: 31px;
 `;
 
 const CreateHabitButton = (props: any) => {

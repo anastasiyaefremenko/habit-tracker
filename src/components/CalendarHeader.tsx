@@ -7,14 +7,19 @@ import {
 import { ContextV2 } from "../App";
 import { Pages } from "../views/views";
 
-const CalendarHeader = () => {
+const CalendarHeader = (props: any) => {
   const { view, setView } = useContext(ContextV2);
   return (
     <Root>
       <StyledBackButton onClick={() => setView(Pages.FOLDER_LIST)}>
         Back
       </StyledBackButton>
-      <StyledEditButton>Edit</StyledEditButton>
+      <StyledEditButton
+        onClick={props.onEdit}
+        disabled={props.editButtonDisabled}
+      >
+        Edit
+      </StyledEditButton>
     </Root>
   );
 };

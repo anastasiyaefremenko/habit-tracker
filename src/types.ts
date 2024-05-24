@@ -22,6 +22,8 @@ export type FoldersContextType = {
   changeFolders: any;
   currentFolder: Folder | undefined;
   setCurrentFolder: any;
+  currentHabit: Habit | undefined;
+  setCurrentHabit: any;
   view: any;
   setView: any;
 };

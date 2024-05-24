@@ -31,12 +31,14 @@ const StyledPenButton = styled.button`
   justify-content: flex-end;
   border: none;
   width: 40px;
+  background-color: transparent;
 `;
 const StyledTrashButton = styled.button`
   display: flex;
   justify-content: flex-end;
   border: none;
   width: 40px;
+  background-color: transparent;
 `;
 const FolderNameInput = styled.input`
   font-family: "Inter", sans-serif;

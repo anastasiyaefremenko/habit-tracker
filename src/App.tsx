@@ -1,11 +1,12 @@
 import React, { useContext, useEffect, useMemo, useState } from "react";
 import "./App.css";
-import { Folders, FoldersContextType } from "./types";
+import { Folders, FoldersContextType, Habit } from "./types";
 import FolderListPage from "./views/FolderListPage";
 import CalendarsListPage from "./views/CalendarsListPage";
 import { Pages } from "./views/views";
 import HabitsPage from "./views/HabitsPage";
 import CreateNewHabitPage from "./views/CreateNewHabitPage";
+import MarkDayPage from "./views/MarkDayPage";
 
 export const useFolderContextV2 = () => {
   const foldersStringFromStorage = localStorage.getItem("folders");
@@ -17,8 +18,8 @@ export const useFolderContextV2 = () => {
 
   const [folders, changeFolders] = useState<Folders>(data);
   const [currentFolder, setCurrentFolder] = useState(undefined);
+  const [currentHabit, setCurrentHabit] = useState(undefined);
   const [view, setView] = useState(Pages.FOLDER_LIST);
-  //const [view, setView] = useState(Pages.HABITS_PAGE);
 
   const saveFoldersToLocalStorage = (foldersToSave: Folders) => {
     window.localStorage.setItem("folders", JSON.stringify(foldersToSave));
@@ -35,6 +36,8 @@ export const useFolderContextV2 = () => {
     changeFolders: changeFolders,
     currentFolder: currentFolder,
     setCurrentFolder: setCurrentFolder,
+    currentHabit: currentHabit,
+    setCurrentHabit: setCurrentHabit,
     view: view,
     setView: setView,
   };
@@ -45,6 +48,8 @@ export const ContextV2 = React.createContext<FoldersContextType>({
   changeFolders: () => {},
   currentFolder: undefined,
   setCurrentFolder: () => {},
+  currentHabit: undefined,
+  setCurrentHabit: () => {},
   view: undefined,
   setView: () => {},
 });
@@ -55,6 +60,8 @@ const App = () => {
     changeFolders,
     currentFolder,
     setCurrentFolder,
+    currentHabit,
+    setCurrentHabit,
     view,
     setView,
   } = useFolderContextV2();
@@ -66,6 +73,8 @@ const App = () => {
         changeFolders,
         currentFolder,
         setCurrentFolder,
+        currentHabit,
+        setCurrentHabit,
         view,
         setView,
       }}
@@ -85,6 +94,7 @@ const View = () => {
       {view === Pages.CALENDAR_PAGE && <CalendarsListPage />}
       {view === Pages.HABITS_PAGE && <HabitsPage />}
       {view === Pages.CREATE_HABIT_PAGE && <CreateNewHabitPage />}
+      {view === Pages.MARK_DAY_PAGE && <MarkDayPage />}
     </div>
   );
 };
