@@ -44,7 +44,11 @@ const CalendarDates = (props: any) => {
   for (let i = 0; i < numberOfEmptyContainers; i++) {
     days.push(<CircleContainer key={i}></CircleContainer>);
   }
-  const daysInMonth = new Date(2024, 4, 0).getDate();
+  const daysInMonth = new Date(
+    props.year,
+    MONTH_NAMES[props.month] + 1,
+    0
+  ).getDate();
   const DAY_ONE = 1;
   for (let i = DAY_ONE; i <= daysInMonth; i++) {
     const thisDay = new Date(props.year, MONTH_NAMES[props.month], i);

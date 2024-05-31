@@ -42,7 +42,7 @@ const StyledTrashButton = styled.button`
 `;
 const FolderNameInput = styled.input`
   font-family: "Inter", sans-serif;
-  font-weight: 400;
+  font-weight: 300;
   font-size: 16px;
   border: none;
   outline: none;
@@ -76,7 +76,6 @@ const FolderButtonsContainer = styled.div`
   display: flex;
   align-items: center;
   justify-content: space-between;
-  //width: 60px;
 `;
 const InputContainer = styled.div`
   display: flex;

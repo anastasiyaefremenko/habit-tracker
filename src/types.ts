@@ -20,10 +20,10 @@ export type ContextualMenuContextType = {
 export type FoldersContextType = {
   folders: Folders;
   changeFolders: any;
-  currentFolder: Folder | undefined;
-  setCurrentFolder: any;
-  currentHabit: Habit | undefined;
-  setCurrentHabit: any;
+  currentFolderId: string;
+  setCurrentFolderId: any;
+  currentHabitId: string;
+  setCurrentHabitId: any;
   view: any;
   setView: any;
 };

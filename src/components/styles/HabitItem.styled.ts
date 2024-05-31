@@ -141,5 +141,4 @@ export const NameAndColorContainer = styled.div<{ rename?: boolean }>`
   align-items: center;
   height: 26px;
   width: 100%;
-  //justify-content: space-between;
 `;

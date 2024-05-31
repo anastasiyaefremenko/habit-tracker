@@ -7,11 +7,12 @@ import { ContextV2 } from "../App";
 import { Pages } from "./views";
 import { v4 as uuid } from "uuid";
 import { Folder } from "../types";
+import { Root } from "../styles/CreateNewHabitPage.styled";
 
 const CreateNewHabitPage = () => {
   const {
-    currentFolder,
-    setCurrentFolder,
+    currentFolderId,
+    setCurrentFolderId,
     folders,
     changeFolders,
     view,
@@ -25,7 +26,6 @@ const CreateNewHabitPage = () => {
   };
   const createHabit = () => {
     if (newHabitName !== "") {
-      console.log(currentFolder);
       const id = uuid();
       const newHabit = {
         id: id,
@@ -35,22 +35,13 @@ const CreateNewHabitPage = () => {
       };
 
       const updatedFolders = folders.map((f) => {
-        if (f.id === currentFolder?.id) {
+        if (f.id === currentFolderId) {
           const folderCopy: Folder = { ...f, habits: [...f.habits, newHabit] };
-
-          // const folderCopy = { ...f }
-          // folderCopy.habits.push(newHabit)
           return folderCopy;
         }
 
         return f;
       });
-
-      const updatedCurrentFolder = updatedFolders.find(
-        (f) => f.id === currentFolder?.id
-      );
-      setCurrentFolder(updatedCurrentFolder);
-
       changeFolders(updatedFolders);
 
       setView(Pages.HABITS_PAGE);
@@ -58,7 +49,7 @@ const CreateNewHabitPage = () => {
   };
 
   return (
-    <div>
+    <Root>
       <Header
         showBack={true}
         title={"New habit"}
@@ -72,7 +63,7 @@ const CreateNewHabitPage = () => {
       />
       <SaveButton createHabit={createHabit} />
       {showColorPicker && <ColorPicker color={color} setColor={setColor} />}
-    </div>
+    </Root>
   );
 };
 

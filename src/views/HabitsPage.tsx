@@ -9,6 +9,12 @@ import CreateHabitButton from "../components/CreateHabitButton";
 import { Pages } from "./views";
 import { ContextV2 } from "../App";
 import HabitItem from "../components/HabitItem";
+import { ConfirmDeleting } from "../components/ConfirmDeleting";
+import {
+  HabitListContainer,
+  Root,
+  FixedPart,
+} from "../styles/HabitsPage.styled";
 
 const HabitsPage = (props: any) => {
   const today = new Date();
@@ -35,12 +41,13 @@ const HabitsPage = (props: any) => {
   const {
     folders,
     changeFolders,
-    currentFolder,
-    setCurrentFolder,
+    currentFolderId,
+    setCurrentFolderId,
     view,
     setView,
   } = useContext(ContextV2);
   const [hiddenHabitsFilter, setHiddenHabitsFilter] = useState<string[]>([]);
+  const currentFolder = folders.find((folder) => folder.id === currentFolderId);
 
   const handleFilterChange = (idChange: string) => {
     if (hiddenHabitsFilter.find((id) => id === idChange)) {
@@ -64,7 +71,7 @@ const HabitsPage = (props: any) => {
   };
   const updateHabit = (updatedHabit: Habit) => {
     const updatedHabitIndex = currentFolder?.habits.findIndex(
-      (habit) => habit.id === updatedHabit.id
+      (habit: Habit) => habit.id === updatedHabit.id
     );
     const foldersCopy = [...folders];
     if (updatedHabitIndex !== undefined) {
@@ -76,46 +83,83 @@ const HabitsPage = (props: any) => {
       changeFolders(foldersCopy);
     }
     setIsEditButtonDisabled(false);
-    //changeFolders(foldersCopy)
   };
-
+  const [habitIdToDelete, setHabitIdToDelete] = useState<string>();
+  const deleteHabit = () => {
+    const currentFolder = folders.find(
+      (folder) => folder.id === currentFolderId
+    );
+    console.log(currentFolder);
+    const updatedHabits = currentFolder?.habits.filter(
+      (habit) => habit.id != habitIdToDelete
+    );
+    const updatedFolders = folders.map((f) => {
+      if (f.id === currentFolderId) {
+        const folderCopy = { ...f, habits: updatedHabits };
+        return folderCopy;
+      }
+      return f;
+    });
+    changeFolders(updatedFolders);
+    setHabitIdToDelete(undefined);
+    setIsEditButtonDisabled(false);
+  };
+  const cancelDeletion = () => {
+    setHabitIdToDelete(undefined);
+    setIsEditButtonDisabled(false);
+  };
+  const handleShowConfirmation = (folderId: string) => {
+    setHabitIdToDelete(folderId);
+  };
   return (
-    <div>
-      <CalendarHeader
-        onEdit={onEdit}
-        editButtonDisabled={isEditButtonDisabled}
-      />
-      <CalendarTitle
-        month={currentMonth}
-        year={currentYear}
-        showPreviousMonth={getPreviousMonth}
-        showNextMonth={getNextMonth}
-      />
-      <NamesOfDaysOfTheWeek />
-      <CalendarDates
-        folder={currentFolder}
-        month={currentMonth}
-        year={currentYear}
-        hiddenHabits={hiddenHabitsFilter}
-      />
-      {currentFolder?.habits.map((habit: Habit) => (
-        <HabitItem
-          onConfirm={updateHabit}
-          habit={habit}
-          startRenaming={habit.habitName === ""}
-          id={habit.id}
-          showEye={!hiddenHabitsFilter.find((id) => id === habit.id)}
-          setShowEye={() => handleFilterChange(habit.id)}
-          showDots={showDots}
-          showEyes={showEyes}
-          hideThreeDots={hideThreeDotsButoon}
+    <Root>
+      <FixedPart>
+        <CalendarHeader
+          onEdit={onEdit}
+          editButtonDisabled={isEditButtonDisabled}
         />
-      ))}
-
+        <CalendarTitle
+          month={currentMonth}
+          year={currentYear}
+          showPreviousMonth={getPreviousMonth}
+          showNextMonth={getNextMonth}
+        />
+        <NamesOfDaysOfTheWeek />
+        <CalendarDates
+          folder={currentFolder}
+          month={currentMonth}
+          year={currentYear}
+          hiddenHabits={hiddenHabitsFilter}
+        />
+      </FixedPart>
+      <HabitListContainer>
+        {currentFolder?.habits.map((habit: Habit) => (
+          <HabitItem
+            onConfirm={updateHabit}
+            habit={habit}
+            startRenaming={habit.habitName === ""}
+            id={habit.id}
+            showEye={!hiddenHabitsFilter.find((id) => id === habit.id)}
+            setShowEye={() => handleFilterChange(habit.id)}
+            showDots={showDots}
+            showEyes={showEyes}
+            hideThreeDots={hideThreeDotsButoon}
+            showConfirmation={handleShowConfirmation}
+          />
+        ))}
+      </HabitListContainer>
       <CreateHabitButton
         openCreateHabitPage={() => setView(Pages.CREATE_HABIT_PAGE)}
       />
-    </div>
+      {habitIdToDelete !== undefined && (
+        <ConfirmDeleting
+          notification={"Habit will be deleted."}
+          confirmation={"Delete Habit"}
+          delete={deleteHabit}
+          cancel={cancelDeletion}
+        ></ConfirmDeleting>
+      )}
+    </Root>
   );
 };
 

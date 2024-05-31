@@ -11,6 +11,8 @@ import {
 type ConfirmDeletingPropsType = {
   delete: () => void;
   cancel: () => void;
+  notification: string;
+  confirmation: string;
 };
 
 export const ConfirmDeleting = (props: ConfirmDeletingPropsType) => {
@@ -18,9 +20,9 @@ export const ConfirmDeleting = (props: ConfirmDeletingPropsType) => {
     <Root>
       <TranparentBackground />
       <StyledContextualMenuContainer>
-        <ConfirmationNote>All habits will be deleted.</ConfirmationNote>
+        <ConfirmationNote>{props.notification}</ConfirmationNote>
         <StyledDeleteButton onClick={props.delete}>
-          Delete Folder
+          {props.confirmation}
         </StyledDeleteButton>
       </StyledContextualMenuContainer>
       <StyledCancelButton onClick={props.cancel}>Cancel</StyledCancelButton>

@@ -22,7 +22,6 @@ type FolderItemPropsType = {
   startRenaming: boolean;
   showThreeDots: boolean;
   hideThreeDots: () => void;
-  delete: (id: string) => void;
   showConfirmation: (folderId: string) => void;
 };
 
@@ -30,7 +29,7 @@ const FolderItem = (props: FolderItemPropsType) => {
   const [newFolderName, setNewFolderName] = useState("");
   const [renaming, setRenaming] = useState(props.startRenaming);
   const [areEditButtonsVisible, setAreEditbuttonsVisible] = useState(false);
-  const { currentFolder, setCurrentFolder, view, setView } =
+  const { currentFolderId, setCurrentFolderId, view, setView } =
     useContext(ContextV2);
 
   function handleInputChange(event: any) {
@@ -60,7 +59,7 @@ const FolderItem = (props: FolderItemPropsType) => {
   };
   const showHabitPage = (event: React.MouseEvent<HTMLElement>) => {
     event.stopPropagation();
-    setCurrentFolder(props.folder);
+    setCurrentFolderId(props.folder.id);
     setView(Pages.HABITS_PAGE);
   };
   return (

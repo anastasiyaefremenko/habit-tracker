@@ -6,7 +6,6 @@ export const Root = styled.div`
   display: grid;
   gap: 10px;
   grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr 1fr;
-  margin-bottom: 40px;
 `;
 export const CircleContainer = styled.div`
   display: flex;

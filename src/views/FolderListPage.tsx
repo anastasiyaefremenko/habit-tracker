@@ -6,7 +6,11 @@ import { Folder, Folders } from "../types";
 import PlusButton from "../components/PlusButton";
 import { ContextV2, useFolderContextV2 } from "../App";
 import { v4 as uuid } from "uuid";
-import { FolderListContainer, Root } from "../styles/FolderListPage.styled";
+import {
+  FolderListContainer,
+  Root,
+  HeaderContainer,
+} from "../styles/FolderListPage.styled";
 
 type FolderListPagePropsType = {};
 
@@ -73,12 +77,14 @@ const FolderListPage = (props: FolderListPagePropsType) => {
 
   return (
     <Root>
-      <Header
-        showBack={false}
-        title={"Folders"}
-        onEdit={showThreeDotsButoon}
-        editButtonDisabled={isEditButtonDisabled}
-      ></Header>
+      <HeaderContainer>
+        <Header
+          showBack={false}
+          title={"Folders"}
+          onEdit={showThreeDotsButoon}
+          editButtonDisabled={isEditButtonDisabled}
+        ></Header>
+      </HeaderContainer>
 
       <FolderListContainer>
         {folders.map((folder: Folder) => (
@@ -89,7 +95,6 @@ const FolderListPage = (props: FolderListPagePropsType) => {
             onConfirm={updateFolder}
             showThreeDots={areThreeDotsVisible}
             hideThreeDots={hideThreeDotsButoon}
-            delete={deleteFolder}
             showConfirmation={handleShowConfirmation}
           />
         ))}
@@ -97,6 +102,8 @@ const FolderListPage = (props: FolderListPagePropsType) => {
       <PlusButton disabled={isPlusButtonDisabled} onNewFolder={addNewFolder} />
       {folderIdToDelete !== undefined && (
         <ConfirmDeleting
+          notification={"All habits will be deleted."}
+          confirmation={"Delete Folder"}
           delete={deleteFolder}
           cancel={cancelDeletion}
         ></ConfirmDeleting>

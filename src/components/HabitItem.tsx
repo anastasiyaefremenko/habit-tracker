@@ -22,7 +22,7 @@ import { ContextV2 } from "../App";
 import { Pages } from "../views/views";
 
 const HabitItem = (props: any) => {
-  const { currentHabit, setCurrentHabit, view, setView } =
+  const { currentHabitId, setCurrentHabitId, view, setView } =
     useContext(ContextV2);
   //const [showEye, setShowEye] = useState(true);
   const [showChangeButtons, setShowChangeButtons] = useState(false);
@@ -31,7 +31,7 @@ const HabitItem = (props: any) => {
     props.hideThreeDots();
   };
   const [newName, setNewName] = useState("");
-  const [newColor, setNewColor] = useState("");
+  const [newColor, setNewColor] = useState("#BCD1F0");
   const handleInputChange = (event: any) => {
     setNewName(event.target.value);
   };
@@ -58,8 +58,12 @@ const HabitItem = (props: any) => {
   };
   const showMarkDayPage = (event: React.MouseEvent<HTMLElement>) => {
     event.stopPropagation();
-    setCurrentHabit(props.habit);
+    setCurrentHabitId(props.habit.id);
     setView(Pages.MARK_DAY_PAGE);
+  };
+  const handleDeleteClick = () => {
+    props.showConfirmation(props.habit.id);
+    setShowChangeButtons(false);
   };
   return (
     <Root>
@@ -112,7 +116,7 @@ const HabitItem = (props: any) => {
             <StyledPenButton onClick={renameHabit}>
               <StyledPenIcon />
             </StyledPenButton>
-            <StyledTrashButton>
+            <StyledTrashButton onClick={handleDeleteClick}>
               <StyledTrashIcon />
             </StyledTrashButton>
           </HabitButtonsContainer>

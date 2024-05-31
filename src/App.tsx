@@ -17,8 +17,8 @@ export const useFolderContextV2 = () => {
       : [];
 
   const [folders, changeFolders] = useState<Folders>(data);
-  const [currentFolder, setCurrentFolder] = useState(undefined);
-  const [currentHabit, setCurrentHabit] = useState(undefined);
+  const [currentFolderId, setCurrentFolderId] = useState("");
+  const [currentHabitId, setCurrentHabitId] = useState("");
   const [view, setView] = useState(Pages.FOLDER_LIST);
 
   const saveFoldersToLocalStorage = (foldersToSave: Folders) => {
@@ -34,10 +34,10 @@ export const useFolderContextV2 = () => {
   return {
     folders: folders,
     changeFolders: changeFolders,
-    currentFolder: currentFolder,
-    setCurrentFolder: setCurrentFolder,
-    currentHabit: currentHabit,
-    setCurrentHabit: setCurrentHabit,
+    currentFolderId: currentFolderId,
+    setCurrentFolderId: setCurrentFolderId,
+    currentHabitId: currentHabitId,
+    setCurrentHabitId: setCurrentHabitId,
     view: view,
     setView: setView,
   };
@@ -46,10 +46,10 @@ export const useFolderContextV2 = () => {
 export const ContextV2 = React.createContext<FoldersContextType>({
   folders: [],
   changeFolders: () => {},
-  currentFolder: undefined,
-  setCurrentFolder: () => {},
-  currentHabit: undefined,
-  setCurrentHabit: () => {},
+  currentFolderId: "",
+  setCurrentFolderId: () => {},
+  currentHabitId: "",
+  setCurrentHabitId: () => {},
   view: undefined,
   setView: () => {},
 });
@@ -58,10 +58,10 @@ const App = () => {
   const {
     folders,
     changeFolders,
-    currentFolder,
-    setCurrentFolder,
-    currentHabit,
-    setCurrentHabit,
+    currentFolderId,
+    setCurrentFolderId,
+    currentHabitId,
+    setCurrentHabitId,
     view,
     setView,
   } = useFolderContextV2();
@@ -71,10 +71,10 @@ const App = () => {
       value={{
         folders,
         changeFolders,
-        currentFolder,
-        setCurrentFolder,
-        currentHabit,
-        setCurrentHabit,
+        currentFolderId,
+        setCurrentFolderId,
+        currentHabitId,
+        setCurrentHabitId,
         view,
         setView,
       }}
@@ -85,9 +85,9 @@ const App = () => {
 };
 
 const View = () => {
-  const { view, currentFolder, setView } = useContext(ContextV2);
+  const { view, currentFolderId, setView } = useContext(ContextV2);
 
-  useEffect(() => {}, [view, currentFolder]);
+  useEffect(() => {}, [view, currentFolderId]);
   return (
     <div>
       {view === Pages.FOLDER_LIST && <FolderListPage />}
