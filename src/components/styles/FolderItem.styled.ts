@@ -71,6 +71,7 @@ const ThreeDotsButton = styled.button<{ color?: string }>`
   font-weight: 900;
   border: none;
   display: flex;
+  background-color: transparent;
 `;
 const FolderButtonsContainer = styled.div`
   display: flex;

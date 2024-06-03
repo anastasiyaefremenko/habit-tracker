@@ -2,7 +2,6 @@ import React, { useContext, useEffect, useMemo, useState } from "react";
 import "./App.css";
 import { Folders, FoldersContextType, Habit } from "./types";
 import FolderListPage from "./views/FolderListPage";
-import CalendarsListPage from "./views/CalendarsListPage";
 import { Pages } from "./views/views";
 import HabitsPage from "./views/HabitsPage";
 import CreateNewHabitPage from "./views/CreateNewHabitPage";
@@ -91,7 +90,6 @@ const View = () => {
   return (
     <div>
       {view === Pages.FOLDER_LIST && <FolderListPage />}
-      {view === Pages.CALENDAR_PAGE && <CalendarsListPage />}
       {view === Pages.HABITS_PAGE && <HabitsPage />}
       {view === Pages.CREATE_HABIT_PAGE && <CreateNewHabitPage />}
       {view === Pages.MARK_DAY_PAGE && <MarkDayPage />}

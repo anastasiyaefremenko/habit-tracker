@@ -11,7 +11,6 @@ const Root = styled.div`
   justify-content: flex-end;
   align-items: center;
   background-color: white;
-  //padding-right: 24px;
   position: fixed;
   bottom: 0;
   width: 100%;
