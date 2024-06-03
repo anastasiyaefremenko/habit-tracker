@@ -1,7 +1,7 @@
 import styled from "styled-components";
 
 export const Root = styled.div`
-  padding-inline: 28px;
+  padding-inline: 20px;
 `;
 export const Subtitle = styled.p`
   font-family: "Inter", sans-serif;

@@ -1,7 +1,6 @@
 import React, { useContext, useState } from "react";
 import {
   HabitName,
-  Root,
   HabitNameContainer,
   Circle,
   LeftButton,

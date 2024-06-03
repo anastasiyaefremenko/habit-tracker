@@ -5,9 +5,6 @@ import {
 } from "../../styles/themeColors";
 import { IoMdCheckmark } from "react-icons/io";
 
-export const Root = styled.div`
-  padding-inline: 28px;
-`;
 export const HabitName = styled.input`
   font-family: "Inter", sans-serif;
   font-weight: 300;
@@ -27,7 +24,7 @@ export const HabitNameContainer = styled.div<{ color?: string }>`
   justify-content: space-between;
   margin-bottom: 6px;
   width: 100%;
-  padding-inline: 28px;
+  padding-inline: 22px;
 `;
 export const Circle = styled.button<{
   marked: boolean;
@@ -44,20 +41,20 @@ export const LeftButton = styled.button`
   color: #a3b1cb;
   border: none;
   background-color: transparent;
-  font-family: "Inter", sans-serif;
+  font-family: "Inknut Antiqua", serif;
   font-weight: 300;
   font-size: 16px;
-  padding-right: 16px;
+  padding-inline: 20px;
   padding-bottom: 21px;
 `;
 export const RightButton = styled.button`
   color: #a3b1cb;
   border: none;
   background-color: transparent;
-  font-family: "Inter", sans-serif;
+  font-family: "Inknut Antiqua", serif;
   font-weight: 300;
   font-size: 16px;
-  padding-left: 16px;
+  padding-inline: 20px;
   padding-bottom: 21px;
 `;
 export const CurrentDate = styled.p`

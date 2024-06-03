@@ -10,7 +10,6 @@ export const Root = styled.div`
 export const NavigationButton = styled.button`
   font-family: "Inknut Antiqua", serif;
   font-weight: 300;
-  color: #8f9db6;
   color: #a3b1cb;
   font-size: 14px;
   border: none;

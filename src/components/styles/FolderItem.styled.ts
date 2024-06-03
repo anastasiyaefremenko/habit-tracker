@@ -60,7 +60,7 @@ const Root = styled.div<{ color?: string }>`
   display: flex;
   justify-content: space-between;
   margin-bottom: 6px;
-  padding-inline: 30px;
+  padding-inline: 22px;
 `;
 const Label = styled.label`
   display: flex;

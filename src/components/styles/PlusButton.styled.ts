@@ -8,7 +8,7 @@ export const StyledPlusButtonContainer = styled.div`
   justify-content: flex-end;
   align-items: center;
   background-color: white;
-  padding-inline: 28px;
+  padding-inline: 20px;
   position: fixed;
   bottom: 0;
   width: 100%;

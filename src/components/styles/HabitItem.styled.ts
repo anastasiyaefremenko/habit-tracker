@@ -9,7 +9,7 @@ import { IoTrashOutline } from "react-icons/io5";
 
 export const Root = styled.div`
   width: 100%;
-  padding-inline: 28px;
+  padding-inline: 20px;
 `;
 export const HabitItemContainer = styled.div`
   display: flex;
