@@ -1,5 +1,5 @@
 import React from "react";
-import { StyledEditButton } from "./styles/EditButton.styled";
+import { StyledEditButton } from "./styles/Header.styled";
 
 type EditButtonProps = {
   onEdit: () => void;

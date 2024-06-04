@@ -1,6 +1,7 @@
 import styled from "styled-components";
+import { themeColorTertiary } from "../../styles/themeColors";
 
-const Root = styled.div`
+export const Root = styled.div`
   padding-top: 60px;
   padding-inline: 20px;
   padding-bottom: 16px;
@@ -8,14 +9,37 @@ const Root = styled.div`
   top: 0;
   background-color: white;
 `;
-const HeaderContainer = styled.div`
+export const HeaderContainer = styled.div`
   display: flex;
   justify-content: space-between;
   margin-bottom: 21px;
 `;
 
-const LeftContainer = styled.div``;
+export const LeftContainer = styled.div``;
 
-const RightContainer = styled.div``;
+export const RightContainer = styled.div``;
 
-export { Root, HeaderContainer, LeftContainer, RightContainer };
+export const StyledEditButton = styled.button<{ color?: string }>`
+  color: ${(props) => (props.color ? props.color : themeColorTertiary)};
+  font-family: "Inter", sans-serif;
+  font-weight: 400;
+  font-size: 16px;
+  color: #8f9db6;
+  border: none;
+  background-color: transparent;
+  -webkit-tap-highlight-color: transparent;
+`;
+export const StyledBackButton = styled.button<{ color?: string }>`
+  color: ${(props) => (props.color ? props.color : themeColorTertiary)};
+  font-family: "Inter", sans-serif;
+  font-weight: 400;
+  font-size: 16px;
+  border: none;
+  background-color: transparent;
+  -webkit-tap-highlight-color: transparent;
+`;
+export const StyledTitle = styled.h1`
+  font-family: "Inter", sans-serif;
+  font-weight: 500;
+  font-size: 36px;
+`;

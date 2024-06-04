@@ -3,7 +3,7 @@ import { themeColorTertiary } from "../../styles/themeColors";
 
 export const Root = styled.div`
   padding-top: 60px;
-  padding-inline: 22px;
+  padding-inline: 20px;
   margin-bottom: 28px;
   display: flex;
   justify-content: space-between;

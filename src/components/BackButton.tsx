@@ -1,5 +1,5 @@
 import React from "react";
-import { StyledBackButton } from "./styles/BackButton.styled";
+import { StyledBackButton } from "./styles/Header.styled";
 
 const BackButton = (props: any) => {
   return <StyledBackButton onClick={props.onClick}>Back</StyledBackButton>;

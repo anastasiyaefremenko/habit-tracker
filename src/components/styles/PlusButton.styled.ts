@@ -1,6 +1,7 @@
 import styled from "styled-components";
 import { themeColorSecondary } from "../../styles/themeColors";
 import { BsFolderPlus } from "react-icons/bs";
+import { PiListPlusLight } from "react-icons/pi";
 
 export const StyledPlusButtonContainer = styled.div`
   display: flex;
@@ -25,4 +26,11 @@ export const StyledPlusIcon = styled(BsFolderPlus)<{ color?: string }>`
   color: ${(props) => (props.color ? props.color : themeColorSecondary)};
   height: 30px;
   width: 30px;
+`;
+export const StyledCreateHabbitIcon = styled(PiListPlusLight)<{
+  color?: string;
+}>`
+  color: ${(props) => (props.color ? props.color : themeColorSecondary)};
+  height: 31px;
+  width: 31px;
 `;
