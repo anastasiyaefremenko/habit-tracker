@@ -36,6 +36,7 @@ export const Circle = styled.button<{
   height: ${(props) => (props.selected ? "44px" : "40px")};
   border-radius: 50%;
   border: ${(props) => (props.selected ? "dashed #909090 1px" : "none")};
+  -webkit-tap-highlight-color: transparent;
 `;
 export const LeftButton = styled.button`
   color: #a3b1cb;
@@ -46,6 +47,7 @@ export const LeftButton = styled.button`
   font-size: 16px;
   padding-inline: 20px;
   padding-bottom: 21px;
+  -webkit-tap-highlight-color: transparent;
 `;
 export const RightButton = styled.button`
   color: #a3b1cb;
@@ -56,6 +58,7 @@ export const RightButton = styled.button`
   font-size: 16px;
   padding-inline: 20px;
   padding-bottom: 21px;
+  -webkit-tap-highlight-color: transparent;
 `;
 export const CurrentDate = styled.p`
   display: flex;

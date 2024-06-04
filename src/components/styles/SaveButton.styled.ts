@@ -12,4 +12,5 @@ export const StyledSaveButton = styled.button`
   width: 232px;
   width: 100%;
   border: none;
+  -webkit-tap-highlight-color: transparent;
 `;

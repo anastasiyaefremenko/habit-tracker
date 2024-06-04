@@ -1,9 +1,7 @@
 import React from "react";
 import styled from "styled-components";
 import { themeColorSecondary } from "../styles/themeColors";
-import { BsCalendarPlus } from "react-icons/bs";
 import { PiListPlusLight } from "react-icons/pi";
-import { PiListPlus } from "react-icons/pi";
 
 const Root = styled.div`
   display: flex;
@@ -20,6 +18,7 @@ const StyledCreateHabbitButton = styled.button`
   border: none;
   background: transparent;
   padding-bottom: 30px;
+  -webkit-tap-highlight-color: transparent;
 `;
 const StyledCreateHabbitIcon = styled(PiListPlusLight)<{ color?: string }>`
   color: ${(props) => (props.color ? props.color : themeColorSecondary)};

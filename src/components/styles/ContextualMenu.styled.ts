@@ -26,6 +26,7 @@ export const StyledButton = styled.button`
   height: 36px;
   width: 134px;
   border-radius: 10px;
+  -webkit-tap-highlight-color: transparent;
   &:hover {
     background-color: #f0f0f0;
   }

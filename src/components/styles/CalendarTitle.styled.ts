@@ -15,10 +15,11 @@ export const NavigationButton = styled.button`
   border: none;
   background-color: transparent;
   padding-inline: 12px;
+  -webkit-tap-highlight-color: transparent;
 `;
 export const Title = styled.p`
   font-family: "Libre Caslon Display", serif;
-  font-size: 26px;
+  font-size: 28px;
   font-weight: 400;
   font-style: normal;
   color: #515151;

@@ -9,7 +9,7 @@ const Root = styled.div`
 `;
 const TranparentBackground = styled.div`
   position: fixed;
-  z-index: 1;
+  z-index: 11;
   background-color: white;
   opacity: 90%;
   top: 0px;
@@ -18,7 +18,7 @@ const TranparentBackground = styled.div`
 `;
 const StyledContextualMenuContainer = styled.div`
   position: fixed;
-  z-index: 2;
+  z-index: 12;
   opacity: 100%;
   top: 40%;
   display: flex;
@@ -44,7 +44,7 @@ const ConfirmationNote = styled.p`
 `;
 
 const StyledDeleteButton = styled.button`
-  z-index: 3;
+  z-index: 13;
   background-color: transparent;
   font-family: "Inter", sans-serif;
   font-weight: 400;
@@ -55,13 +55,14 @@ const StyledDeleteButton = styled.button`
   border-radius: 10px;
   border: none;
   bottom: 0px;
+  -webkit-tap-highlight-color: transparent;
   &:hover {
     background-color: #f0f0f0;
   }
 `;
 const StyledCancelButton = styled.button`
   position: fixed;
-  z-index: 3;
+  z-index: 13;
   bottom: 0px;
   background-color: #a3b1cb;
   font-family: "Inter", sans-serif;
@@ -71,12 +72,9 @@ const StyledCancelButton = styled.button`
   height: 70px;
   width: 232px;
   width: 100%;
-  //border-radius: 10px;
   border: none;
   bottom: 0px;
-  /* &:hover {
-    background-color: #f0f0f0;
-  } */
+  -webkit-tap-highlight-color: transparent;
 `;
 export {
   Root,

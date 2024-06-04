@@ -20,6 +20,7 @@ export const StyledEditButton = styled.button<{ color?: string }>`
   color: #8f9db6;
   border: none;
   background-color: transparent;
+  -webkit-tap-highlight-color: transparent;
 `;
 
 export const StyledBackButton = styled.button<{ color?: string }>`
@@ -29,4 +30,5 @@ export const StyledBackButton = styled.button<{ color?: string }>`
   font-size: 16px;
   border: none;
   background-color: transparent;
+  -webkit-tap-highlight-color: transparent;
 `;

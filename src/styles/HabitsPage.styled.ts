@@ -5,7 +5,6 @@ export const Root = styled.div`
   overflow-y: hidden;
 `;
 export const FixedPart = styled.div`
-  z-index: 500;
   position: fixed;
   width: 100%;
   top: 0;
@@ -17,6 +16,5 @@ export const HabitListContainer = styled.div`
   position: absolute;
   width: 100%;
   top: 406px;
-  z-index: 0;
   height: 360px;
 `;

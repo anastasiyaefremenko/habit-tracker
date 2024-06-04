@@ -27,7 +27,7 @@ export const PieChartContainer = styled.div<{ $isToday: boolean }>`
 export const DateNumber = styled.p<{ $marked: boolean }>`
   color: ${(props) => (props.$marked ? "#FFFFFF" : themeColorTertiary)};
   font-family: "Libre Caslon Display", serif;
-  font-size: 16px;
+  font-size: 18px;
   position: absolute;
   z-index: 2;
 `;

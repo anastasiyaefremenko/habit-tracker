@@ -5,7 +5,7 @@ import { Classes } from "reactcss";
 import { SketchPickerStylesProps } from "react-color/lib/components/sketch/Sketch";
 
 export const Root = styled.div`
-  padding-inline: 28px;
+  padding-inline: 20px;
   display: flex;
   justify-content: center;
 `;

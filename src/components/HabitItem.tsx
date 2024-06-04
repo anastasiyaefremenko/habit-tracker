@@ -31,7 +31,7 @@ const HabitItem = (props: any) => {
     props.hideThreeDots();
   };
   const [newName, setNewName] = useState("");
-  const [newColor, setNewColor] = useState("#BCD1F0");
+  const [newColor, setNewColor] = useState(props.habit.habitColour);
   const handleInputChange = (event: any) => {
     setNewName(event.target.value);
   };

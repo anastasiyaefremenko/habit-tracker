@@ -9,4 +9,5 @@ export const StyledEditButton = styled.button<{ color?: string }>`
   color: #8f9db6;
   border: none;
   background-color: transparent;
+  -webkit-tap-highlight-color: transparent;
 `;

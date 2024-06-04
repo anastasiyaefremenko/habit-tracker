@@ -18,7 +18,7 @@ export const HabitNameInput = styled.input`
   font-family: "Inter", sans-serif;
   font-weight: 400;
   font-size: 16px;
-  padding-left: 26px;
+  padding-left: 16px;
   border-radius: 12px;
   margin-bottom: 20px;
 `;
@@ -37,4 +37,5 @@ export const ColorNameButton = styled.button<{
   font-size: 16px;
   text-align: center;
   border-radius: 12px;
+  -webkit-tap-highlight-color: transparent;
 `;

@@ -8,4 +8,5 @@ export const StyledBackButton = styled.button<{ color?: string }>`
   font-size: 16px;
   border: none;
   background-color: transparent;
+  -webkit-tap-highlight-color: transparent;
 `;

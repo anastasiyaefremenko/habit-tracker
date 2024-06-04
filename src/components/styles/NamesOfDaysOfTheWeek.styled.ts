@@ -8,7 +8,6 @@ export const Root = styled.div`
   margin-bottom: 26px;
   background-color: #ebeff5;
   height: 28px;
-  //position: sticky;
 `;
 
 export const DayName = styled.p`
@@ -17,6 +16,5 @@ export const DayName = styled.p`
   display: flex;
   align-items: center;
   justify-content: center;
-  //color: #8f9db6;
-  font-size: 16px;
+  font-size: 18px;
 `;

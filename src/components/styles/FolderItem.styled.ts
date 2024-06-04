@@ -3,11 +3,8 @@ import {
   themeColorPrimary,
   themeColorSecondary,
 } from "../../styles/themeColors";
-import { IoFolderOpenOutline } from "react-icons/io5";
 import { BsFolder } from "react-icons/bs";
-import { RiQuillPenLine } from "react-icons/ri";
 import { HiOutlinePencil } from "react-icons/hi2";
-import { BsTrash } from "react-icons/bs";
 import { IoTrashOutline } from "react-icons/io5";
 
 const StyledFolderIcon = styled(BsFolder)<{ color?: string }>`
@@ -32,6 +29,7 @@ const StyledPenButton = styled.button`
   border: none;
   width: 40px;
   background-color: transparent;
+  -webkit-tap-highlight-color: transparent;
 `;
 const StyledTrashButton = styled.button`
   display: flex;
@@ -39,6 +37,7 @@ const StyledTrashButton = styled.button`
   border: none;
   width: 40px;
   background-color: transparent;
+  -webkit-tap-highlight-color: transparent;
 `;
 const FolderNameInput = styled.input`
   font-family: "Inter", sans-serif;
@@ -72,6 +71,7 @@ const ThreeDotsButton = styled.button<{ color?: string }>`
   border: none;
   display: flex;
   background-color: transparent;
+  -webkit-tap-highlight-color: transparent;
 `;
 const FolderButtonsContainer = styled.div`
   display: flex;

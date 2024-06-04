@@ -1,6 +1,5 @@
 import styled from "styled-components";
 import { themeColorSecondary } from "../../styles/themeColors";
-import { GoPlus } from "react-icons/go";
 import { BsFolderPlus } from "react-icons/bs";
 
 export const StyledPlusButtonContainer = styled.div`
@@ -19,6 +18,7 @@ export const StyledPlusButton = styled.button`
   background-color: transparent;
   border: none;
   padding-bottom: 30px;
+  -webkit-tap-highlight-color: transparent;
 `;
 
 export const StyledPlusIcon = styled(BsFolderPlus)<{ color?: string }>`

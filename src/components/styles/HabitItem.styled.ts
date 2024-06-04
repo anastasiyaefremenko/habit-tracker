@@ -1,7 +1,4 @@
 import styled from "styled-components";
-import { FaRegEye } from "react-icons/fa";
-import { IoEyeOutline } from "react-icons/io5";
-import { MdOutlineRemoveRedEye } from "react-icons/md";
 import { PiEye } from "react-icons/pi";
 import { PiEyeClosed } from "react-icons/pi";
 import { HiOutlinePencil } from "react-icons/hi2";
@@ -25,13 +22,16 @@ export const HabitColor = styled.button<{
   customColor?: string;
 }>`
   background-color: ${(props) => (props.show ? props.customColor : "#C1CBDB")};
+  background-color: ${(props) => (props.show ? props.customColor : "#E7EAEF")};
   width: 10px;
   height: 10px;
   border: none;
   border-radius: 50%;
+  -webkit-tap-highlight-color: transparent;
 `;
 export const HabitName = styled.input<{ show?: boolean }>`
   color: ${(props) => (props.show ? "#2b2b2b;" : "#C1CBDB")};
+  color: ${(props) => (props.show ? "#262626;" : "#C1CBDB")};
   font-family: "Inter", sans-serif;
   font-weight: 300;
   font-size: 16px;
@@ -52,6 +52,7 @@ export const EyeButton = styled.button`
   border: none;
   background-color: transparent;
   width: 40px;
+  -webkit-tap-highlight-color: transparent;
 `;
 export const DotsButton = styled.button`
   border: none;
@@ -60,6 +61,7 @@ export const DotsButton = styled.button`
   font-size: 20px;
   font-weight: 900;
   color: #c1cbdb;
+  -webkit-tap-highlight-color: transparent;
 `;
 export const EyeIcon = styled(PiEye)`
   width: 18px;
@@ -122,6 +124,7 @@ export const StyledPenButton = styled.button`
   width: 40px;
   height: 26px;
   background-color: transparent;
+  -webkit-tap-highlight-color: transparent;
 `;
 export const StyledTrashButton = styled.button`
   display: flex;
@@ -130,6 +133,7 @@ export const StyledTrashButton = styled.button`
   width: 40px;
   height: 26px;
   background-color: transparent;
+  -webkit-tap-highlight-color: transparent;
 `;
 export const HabitButtonsContainer = styled.div`
   display: flex;
